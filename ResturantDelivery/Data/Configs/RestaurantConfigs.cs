@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using ResturantDelivery.Models;
 
-namespace ResturantDelivery.Configs
+namespace ResturantDelivery.Data.Configs
 {
     public class RestaurantConfigs : IEntityTypeConfiguration<Restaurant>
     {

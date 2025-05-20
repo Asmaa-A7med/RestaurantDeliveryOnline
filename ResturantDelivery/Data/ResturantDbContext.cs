@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using ResturantDelivery.Configs;
+using ResturantDelivery.Data.Configs;
+using ResturantDelivery.Models;
 
-namespace ResturantDelivery.Models
+namespace ResturantDelivery.Data
 {
     public class ResturantDbContext:DbContext
     {

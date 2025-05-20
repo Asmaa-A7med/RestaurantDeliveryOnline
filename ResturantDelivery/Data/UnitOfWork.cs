@@ -1,0 +1,44 @@
+﻿using ResturantDelivery.Models;
+using ResturantDelivery.Reposetories;
+
+namespace ResturantDelivery.Data
+{
+    public class UnitOfWork : IDisposable
+    {
+        private readonly ResturantDbContext _context;
+        
+        public RestaurantRepo Restaurants { get; }
+
+        public citiyRepo Cities { get; }
+
+        public GenericRepo<MenuItem, int> MenuItems { get; }
+        public GenericRepo<Order, int> Orders { get; }
+        public GenericRepo<Customer, int> Customers { get; }
+
+        public GenericRepo<OrderDetail, int> OrderDetails { get; }
+
+        public UnitOfWork(ResturantDbContext context)
+        {
+            _context = context;
+            Cities = new citiyRepo(_context);
+
+            Restaurants = new RestaurantRepo(_context);
+
+            MenuItems = new GenericRepo<MenuItem, int>(_context);
+            Orders = new GenericRepo<Order, int>(_context);
+            OrderDetails = new GenericRepo<OrderDetail, int>(_context);
+        }
+
+        // save changes :
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
+        }
+
+        // end connection with dbContext 
+        public void Dispose()
+        {
+            _context.Dispose();  
+        }
+    }
+}
