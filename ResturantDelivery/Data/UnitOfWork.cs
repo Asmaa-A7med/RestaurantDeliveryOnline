@@ -11,7 +11,8 @@ namespace ResturantDelivery.Data
 
         public citiyRepo Cities { get; }
 
-        public GenericRepo<MenuItem, int> MenuItems { get; }
+        public MenueRepo MenuItems { get; }
+
         public GenericRepo<Order, int> Orders { get; }
         public GenericRepo<Customer, int> Customers { get; }
 
@@ -24,7 +25,8 @@ namespace ResturantDelivery.Data
 
             Restaurants = new RestaurantRepo(_context);
 
-            MenuItems = new GenericRepo<MenuItem, int>(_context);
+            MenuItems = new MenueRepo(_context);
+
             Orders = new GenericRepo<Order, int>(_context);
             OrderDetails = new GenericRepo<OrderDetail, int>(_context);
         }

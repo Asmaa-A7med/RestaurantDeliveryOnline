@@ -30,6 +30,13 @@ namespace ResturantDelivery.Services
             return _mapper.Map<List<SearchRestaurantDto>>(restaurants);
         }
 
+        // get menue items based on resturant id ;
+        public async Task<List<MenuItemDto>> GetMenuByRestaurantIdAsync(int restaurantId)
+        {
+            var menuItems = await _unitOfWork.MenuItems.GetMenuByRestaurantIdAsync(restaurantId);
+            return _mapper.Map<List<MenuItemDto>>(menuItems);
+        }
+
 
     }
 }

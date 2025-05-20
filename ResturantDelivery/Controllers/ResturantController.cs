@@ -31,5 +31,20 @@ namespace ResturantDelivery.Controllers
             var results = await _resturantService.SearchRestaurantsAsync(name, cityName);
             return Ok(results);
         }
+
+        // menue items of any resturant: 
+        [HttpGet("{restaurantId}/MenuItems")]
+        public async Task<IActionResult> GetMenuByRestaurantId(int restaurantId)
+        {
+            var menuItems = await _resturantService.GetMenuByRestaurantIdAsync(restaurantId);
+
+            if (menuItems == null || !menuItems.Any())
+            {
+                return NotFound($"No menu found for this restaurant  {restaurantId}");
+            }
+
+            return Ok(menuItems);
+        }
+
     }
 }
