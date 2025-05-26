@@ -36,6 +36,7 @@ namespace ResturantDelivery
 
             builder.Services.AddScoped<ResturantService>();
             builder.Services.AddScoped<cityService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
 
 
             // Define CORS policy
