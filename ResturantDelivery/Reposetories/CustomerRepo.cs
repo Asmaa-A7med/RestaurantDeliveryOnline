@@ -1,6 +1,6 @@
 ﻿namespace ResturantDelivery.Reposetories
 {
-    public class ustomerRepo
+    public class CustomerRepo
     {
     }
 }
