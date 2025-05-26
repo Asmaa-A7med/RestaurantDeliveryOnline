@@ -7,14 +7,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ResturantDelivery.Data;
 
-
 #nullable disable
 
 namespace ResturantDelivery.Migrations
 {
     [DbContext(typeof(ResturantDbContext))]
-    [Migration("20250518170831_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20250525100445_create db")]
+    partial class createdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
