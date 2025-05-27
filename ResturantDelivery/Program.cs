@@ -1,7 +1,9 @@
 
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using ResturantDelivery.Data;
 using ResturantDelivery.MapperConfigs;
+using ResturantDelivery.Models;
 using ResturantDelivery.Reposetories;
 using ResturantDelivery.Services;
 
@@ -37,6 +39,9 @@ namespace ResturantDelivery
             builder.Services.AddScoped<ResturantService>();
             builder.Services.AddScoped<cityService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
+            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+
 
 
             // Define CORS policy

@@ -11,12 +11,13 @@ namespace ResturantDelivery.Data
         }
 
 
-        public DbSet<City> Cities { get; set; }
+      public DbSet<City> Cities { get; set; }
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<MenuItem> MenuItems { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<User> Users { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +30,8 @@ namespace ResturantDelivery.Data
             modelBuilder.ApplyConfiguration(new CustomerConfigs());
             modelBuilder.ApplyConfiguration(new OrderConfig());
             modelBuilder.ApplyConfiguration(new OrderDetailConfigs());
+            modelBuilder.Ignore<City>();
+
         }
     }
 }
