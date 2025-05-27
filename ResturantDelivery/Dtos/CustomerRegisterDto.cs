@@ -2,11 +2,11 @@
 
 namespace ResturantDelivery.Dtos
 {
-    public class RegisterDto
+    public class CustomerRegisterDto
     {
         [Required]
         [MinLength(3)]
-        public string Name { get; set; }
+        public string FullName { get; set; }
 
         [Required]
         [EmailAddress]

@@ -6,6 +6,10 @@ using ResturantDelivery.MapperConfigs;
 using ResturantDelivery.Models;
 using ResturantDelivery.Reposetories;
 using ResturantDelivery.Services;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using System.Text;
+
 
 namespace ResturantDelivery
 {
@@ -39,11 +43,26 @@ namespace ResturantDelivery
             builder.Services.AddScoped<ResturantService>();
             builder.Services.AddScoped<cityService>();
             builder.Services.AddScoped<IEmailService, EmailService>();
-            builder.Services.AddScoped<UserService>();
-            builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
+            builder.Services.AddScoped<CustomerService>();
 
+            builder.Services.AddScoped<ICustomerRepo, CustomerRepo>();
 
-
+            builder.Services.AddAuthentication(option =>
+     option.DefaultAuthenticateScheme = "myscheme")
+ .AddJwtBearer("myscheme", op =>
+ {
+     string key = builder.Configuration["JWT:Key"];
+     var sercertKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(key));
+     op.TokenValidationParameters = new TokenValidationParameters
+     {
+         IssuerSigningKey = sercertKey,
+         ValidateIssuer = true,
+         ValidateAudience = true,
+         ValidIssuer = builder.Configuration["JWT:Issuer"],
+         ValidAudience = builder.Configuration["JWT:Audience"],
+         ValidateLifetime = true
+     };
+ });
             // Define CORS policy
             builder.Services.AddCors(options =>
             {
@@ -67,8 +86,9 @@ namespace ResturantDelivery
 
             app.UseHttpsRedirection();
             app.UseCors("AllowAngularApp");
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
 
             app.MapControllers();
