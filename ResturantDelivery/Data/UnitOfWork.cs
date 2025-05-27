@@ -13,11 +13,12 @@ namespace ResturantDelivery.Data
 
         public MenueRepo MenuItems { get; }
 
-        public UserRepo Users { get; }
+      
 
 
         public GenericRepo<Order, int> Orders { get; }
-        public GenericRepo<Customer, int> Customers { get; }
+        public CustomerRepo Customers { get; }
+
 
         public GenericRepo<OrderDetail, int> OrderDetails { get; }
 
@@ -29,7 +30,8 @@ namespace ResturantDelivery.Data
             Restaurants = new RestaurantRepo(_context);
 
             MenuItems = new MenueRepo(_context);
-            Users = new UserRepo(_context);
+            
+            Customers = new CustomerRepo(context);
 
             Orders = new GenericRepo<Order, int>(_context);
             OrderDetails = new GenericRepo<OrderDetail, int>(_context);

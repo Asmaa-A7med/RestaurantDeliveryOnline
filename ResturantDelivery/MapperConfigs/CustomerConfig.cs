@@ -10,6 +10,14 @@ namespace ResturantDelivery.MapperConfigs
         {
             CreateMap<CustomerDto, Customer>();
             CreateMap<Customer, CustomerDto>();
+
+            // register :
+            CreateMap<CustomerRegisterDto, Customer>()
+           .ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
+            // login
+            CreateMap<CustomerLoginDto, Customer>()
+          .ForMember(dest => dest.PasswordHash, opt => opt.Ignore());
+
         }
     }
 }
