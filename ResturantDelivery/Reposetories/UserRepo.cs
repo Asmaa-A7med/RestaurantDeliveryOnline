@@ -19,5 +19,6 @@ namespace ResturantDelivery.Reposetories
             return await db.Set<User>().FirstOrDefaultAsync(u => u.Email == email);
 
         }
+
     }
 }
